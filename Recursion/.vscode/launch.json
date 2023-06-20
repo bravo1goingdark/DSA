@@ -1,0 +1,105 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "NQueenProblem",
+            "request": "launch",
+            "mainClass": "NQueenProblem",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "nqueen",
+            "request": "launch",
+            "mainClass": "nqueen",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "mazewithobstacle",
+            "request": "launch",
+            "mainClass": "mazewithobstacle",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "mazeproblem",
+            "request": "launch",
+            "mainClass": "mazeproblem",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "interviewques",
+            "request": "launch",
+            "mainClass": "interviewques",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch StrSubSeq",
+            "request": "launch",
+            "mainClass": "StrSubSeq",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch stringQuestion",
+            "request": "launch",
+            "mainClass": "stringQuestion",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch Quicksort",
+            "request": "launch",
+            "mainClass": "Quicksort",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch quicksort",
+            "request": "launch",
+            "mainClass": "quicksort",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch mergesort",
+            "request": "launch",
+            "mainClass": "mergesort",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch recursorting",
+            "request": "launch",
+            "mainClass": "recursorting",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch recursionarr",
+            "request": "launch",
+            "mainClass": "recursionarr",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch recursionbasic",
+            "request": "launch",
+            "mainClass": "recursionbasic",
+            "projectName": "Recursion_2ee6e819"
+        }
+    ]
+}
