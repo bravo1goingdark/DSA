@@ -37,7 +37,4 @@ public class question {
         return maxHeap.isEmpty() ? 0:maxHeap.poll();
 
     }
-    public int[] topKFrequent(int[] nums, int k) {
-        
-    }
 }

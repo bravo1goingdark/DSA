@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.PriorityQueue;
-
 public class Main {
     public static void main(String[] args) throws Exception {
         maxHeap heap = new maxHeap();
@@ -31,18 +29,19 @@ public class Main {
         que.insert(7);
         que.insert(6);
         System.out.println();
-        que.display();
-        que.remove();
-        que.display();
-        que.remove();
-        que.display();
-        que.remove();
-        que.display();
-        while (que.isEmpty()) {
-            
+        while (!que.isEmpty()) {
+            System.out.print(que.remove() + " ");
         }
 
-
         
+        MedianFinder med = new MedianFinder();
+        int[] arrr = {5,8,2,10,1,7,6};
+
+        for (int i = 0; i < arrr.length - 1; i++) {
+            med.insert(arrr[i]);
+        }
+
+        double val = med.findMedian();
+        System.out.println("Median " + val);     
     }
 }
