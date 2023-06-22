@@ -10,6 +10,12 @@ public class Main {
         map.put(4, 4);
         map.put(10, 10);
         map.display();
+
+        int val = map.get(8);
+        System.out.println(val);
+        int removedval = map.remove(13);
+        System.out.println(removedval);
+        map.display();
         
     }
 }

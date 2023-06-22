@@ -25,6 +25,4 @@ public  class HashEntry<K , V> {
     public void setNext(HashEntry<K , V> next) {
         this.next = next;
     }
-
-
 }

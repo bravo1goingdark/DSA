@@ -1,3 +1,5 @@
+import javax.print.event.PrintEvent;
+
 public class MyHashMap <K , V> {
     private HashEntry<K , V>[] bucket;
     private int size; 
@@ -38,15 +40,48 @@ public class MyHashMap <K , V> {
         }
         
     }
+    public V get(K key) {
+        int bucketIndex = getIndex(key);
+
+        HashEntry<K , V> entry = bucket[bucketIndex];
+        while (entry  != null) {
+            if (entry.getKey().equals(key)) {
+                return entry.getValue();
+            }
+            entry = entry.getNext();
+        }
+        return null;
+    }
+    public V remove(K key) {
+        int bucketIndex = getIndex(key);
+        HashEntry<K , V> entry = bucket[bucketIndex];
+        HashEntry<K , V> prevEntry = null;
+        while (entry != null) {
+            if (entry.getKey().equals(key)) {
+                V val = entry.getValue();
+                if (prevEntry == null) {
+                    bucket[bucketIndex] = entry.getNext();
+                } else {
+                    prevEntry.setNext(entry.getNext());
+                }
+                size--;
+                return val;
+            }
+            prevEntry = entry;
+            entry  = entry.getNext();
+        }
+        return null;
+        
+    }
     public void display() {
         for (int i = 0; i < bucket.length; i++) {
             HashEntry<K , V> entry = bucket[i];
 
             while (entry != null) {
-                System.out.println("(" + entry.getKey() + "," + entry.getValue() + ")" + " ");
+                System.out.print("(" + entry.getKey() + "," + entry.getValue() + ")" + " ");
                 entry = entry.getNext();
             }
-            System.out.println();
+            // System.out.println();
         }
     }
     private int getIndex(K key) {
