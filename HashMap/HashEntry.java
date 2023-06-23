@@ -6,7 +6,7 @@ public  class HashEntry<K , V> {
     public HashEntry(K key , V value) {
         this.key = key;
         this.value = value;
-        this.next = null;
+        // this.next = null;
     }
     
     public K getKey() {
