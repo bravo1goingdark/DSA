@@ -42,4 +42,30 @@ public class question {
         
         return result;
     }
+    public int romanToInt(String s) {
+        HashMap<Character , Integer> map = new HashMap<>();
+        char[] arr = s.toCharArray();
+
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+
+        int ans = map.get(arr[0]);
+        for (int i = 1; i < arr.length ; i++) {
+            int currentValue = map.get(arr[i]);
+            int previousValue = map.get(arr[i - 1]);
+            if (currentValue > previousValue)  {
+                ans += currentValue - 2*previousValue;
+            }
+            else {
+                ans += currentValue;
+            }
+        }
+        return ans;
+
+    }
 }
