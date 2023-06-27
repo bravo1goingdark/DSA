@@ -69,4 +69,20 @@ public class question {
         return ans;
 
     }
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+    HashMap<Integer, Integer> numIndexMap = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++) {
+        int num = nums[i];
+        if (numIndexMap.containsKey(num)) {
+            int prevIndex = numIndexMap.get(num);
+            if (i - prevIndex <= k) {
+                return true; // Found a duplicate within the given distance k
+            }
+        }
+        numIndexMap.put(num, i);
+    }
+
+    return false; // No duplicates found within the given distance k
+}
 }
