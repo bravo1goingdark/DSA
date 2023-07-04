@@ -5,18 +5,18 @@
 // 5 --> https://leetcode.com/problems/peak-index-in-a-mountain-array/
 // 6 --> https://leetcode.com/problems/find-peak-element/   --> same ans as of question 5
 public class Question {
-    public static void main(String[] args) {
-        // boolean ans = perfectsquare(808201);
-        int[] arr = {4,5,6,7,0,1,2};
-        System.out.println(search(arr , 0));
-        // char[] letters = {'c' , 'f' , 'j'};
-        // char ans = nextGreatestLetter(letters, 'c');
+    // public static void main(String[] args) {
+    //     // boolean ans = perfectsquare(808201);
+    //     int[] arr = {4,5,6,7,0,1,2};
+    //     System.out.println(search(arr , 0));
+    //     // char[] letters = {'c' , 'f' , 'j'};
+    //     // char ans = nextGreatestLetter(letters, 'c');
         
-        // int[] read = {5,7,7,8,8,10};
-        // int target = 7;
-        // int[] hollow = searchRange(read, target);
-        // System.out.println(Arrays.toString(hollow));
-    }
+    //     // int[] read = {5,7,7,8,8,10};
+    //     // int target = 7;
+    //     // int[] hollow = searchRange(read, target);
+    //     // System.out.println(Arrays.toString(hollow));
+    // }
     
     static int search(int[] nums, int target) {
         int pivot = findPivot(nums);
@@ -188,4 +188,54 @@ public class Question {
         }
         return false;
     }
+    static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] newarr = mergeArrays(nums1, nums2);
+        int start = 0;
+        int end = newarr.length - 1;
+        int mid = start + (end - start) / 2;
+
+        if (end % 2 == 0) {
+            return newarr[mid];
+        } 
+        return (newarr[mid] + newarr[mid + 1]) / 2;
+    }
+
+    static int[] mergeArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] result = new int[m + n];
+
+        int i = 0; // Index for nums1
+        int j = 0; // Index for nums2
+        int k = 0; // Index for the merged array
+
+        // Compare elements from both arrays and add them to the merged array in the correct order
+        while (i < m && j < n) {
+            if (nums1[i] <= nums2[j]) {
+                result[k] = nums1[i];
+                i++;
+            } else {
+                result[k] = nums2[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Add any remaining elements from nums1, if there are any
+        while (i < m) {
+            result[k] = nums1[i];
+            i++;
+            k++;
+        }
+
+        // Add any remaining elements from nums2, if there are any
+        while (j < n) {
+            result[k] = nums2[j];
+            j++;
+            k++;
+        }
+
+        return result;
+    }
+    
 }
