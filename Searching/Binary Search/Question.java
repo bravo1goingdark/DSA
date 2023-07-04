@@ -197,7 +197,7 @@ public class Question {
         if (end % 2 == 0) {
             return newarr[mid];
         } 
-        return (newarr[mid] + newarr[mid + 1]) / 2;
+        return (double) (newarr[mid] + newarr[mid + 1]) / 2;
     }
 
     static int[] mergeArrays(int[] nums1, int[] nums2) {
