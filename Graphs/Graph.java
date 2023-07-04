@@ -1,57 +1,44 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class Graph<T> {
-    private Map<T , List<T>> adjacencylist;
+public class Graph{
+    private int numVertices;
+    private List<List<Integer>> adjacencyList;
 
-    public Graph() {
-        this.adjacencylist = new HashMap<>();
+    public Graph(int numVertices) {
+        this.numVertices = numVertices;
+        this.adjacencyList = new ArrayList<>(numVertices);
+        for (int i = 0; i < numVertices; i++) {
+            adjacencyList.add(new ArrayList<>());
+        }
     }
-
     // bi-directional graph
-    public void addEdges(T source , T destination){
-        List<T> sourcelist = adjacencylist.get(source);
-        if (sourcelist == null) {
-            sourcelist = new ArrayList<>();
-            adjacencylist.put(source, sourcelist);
-        }
-        sourcelist.add(destination);
-
-        List<T> destinationList = adjacencylist.get(destination);
-        if (destinationList == null) {
-            destinationList = new ArrayList<>();
-            adjacencylist.put(destination, destinationList);
-        }
-        destinationList.add(source);
+    public void addEdges(int source, int destination) {
+        adjacencyList.get(source).add(destination);
+        adjacencyList.get(destination).add(source);
     }
 
-    public void removeEdges(T source , T destination) {
-        List<T> sourceList = adjacencylist.get(source);
+    public void removeEdges(int source, int destination) {
+        List<Integer> sourceList = adjacencyList.get(source);
+        List<Integer> destList = adjacencyList.get(destination);
+
         if (sourceList != null) {
-            sourceList.remove(destination);
+            sourceList.remove(Integer.valueOf(destination));
         }
+        if (destList != null) {
+            destList.remove(Integer.valueOf(source));
+        }
+    }
+    public List<Integer> getadjacentVertices(int vertex) {
+        return adjacencyList.get(vertex);
+    }
 
-        List<T> destinationList = adjacencylist.get(destination);
-        if (destinationList != null) {
-            destinationList.remove(source);
-        }
-    }
-    public List<T> getadjacentVertices(T vertex){
-        List<T> neighbours = adjacencylist.get(vertex);
-        if (neighbours == null) {
-            neighbours = new ArrayList<>();
-        }
-        return neighbours;
-    }
     public void display() {
-        for (Map.Entry<T , List<T>> entry : adjacencylist.entrySet()) {
-            T vertex = entry.getKey();
-            List<T> neighbours = entry.getValue();
-            System.out.print(vertex + " -> ");
-            for (T neighbour : neighbours) {
-                System.out.print(neighbour + " ");
+        for (int i = 0; i < numVertices; i++) {
+            List<Integer> neighbors = adjacencyList.get(i);
+            System.out.print(i + " -> ");
+            for (int j = 0; j < neighbors.size(); j++) {
+                System.out.print(neighbors.get(j) + " ");
             }
             System.out.println();
         }
