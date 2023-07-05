@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Graph{
     private int numVertices;
@@ -31,6 +33,26 @@ public class Graph{
     }
     public List<Integer> getadjacentVertices(int vertex) {
         return adjacencyList.get(vertex);
+    }
+    public void bfs(int startVertex){
+        boolean[] visited = new boolean[numVertices];
+        Queue<Integer> que = new LinkedList<>();
+        visited[startVertex] = true;
+        que.offer(startVertex);
+
+        while (!que.isEmpty()) {
+            int currVertex = que.poll();
+            System.out.print(currVertex + " ");
+
+            List<Integer> list = adjacencyList.get(currVertex);
+            for (int adjacent : list) {
+                if (!visited[adjacent]) {
+                    visited[adjacent] = true;
+                    que.offer(adjacent);
+                }
+            }
+        }
+        System.out.println();
     }
 
     public void display() {

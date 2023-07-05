@@ -9,7 +9,11 @@ public class Main {
         graph.addEdges(4, 1);
         graph.display();
         System.out.println();
-        graph.removeEdges(1, 4);
+
+        graph.bfs(0);
+        System.out.println();
+        
+        graph.removeEdges(1, 3);
         graph.display();
         System.out.println();
         List<Integer> list = graph.getadjacentVertices(0);
