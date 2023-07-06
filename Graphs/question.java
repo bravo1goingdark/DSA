@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class question {
@@ -25,5 +26,31 @@ public class question {
             }
         }
         return center;
+    }
+    public int findJudge(int n, int[][] trust) {
+        HashMap<Integer , Integer> map = new HashMap<>();
+
+        for (int[] pair : trust) {
+            int person1 = pair[0];
+            int person2 = pair[1];
+            map.put(person1, map.getOrDefault(person1, 0));
+            map.put(person2, map.getOrDefault(person2, 0) + 1);
+        }
+
+        for (int i = 0; i <= n; i++) {
+            if (map.getOrDefault(i, 0) == n - 1) {
+                boolean istownjudge = true;
+                for (int[] pair : trust) {
+                    if (pair[0] == i) {
+                        istownjudge = false;
+                        break;
+                    }
+                }
+                if (istownjudge) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 }
