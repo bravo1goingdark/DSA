@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class question {
     public int findCenter(int[][] edges) {
@@ -28,7 +29,7 @@ public class question {
         return center;
     }
     public int findJudge(int n, int[][] trust) {
-        HashMap<Integer , Integer> map = new HashMap<>();
+        Map<Integer , Integer> map = new HashMap<>();
 
         for (int[] pair : trust) {
             int person1 = pair[0];
@@ -52,5 +53,40 @@ public class question {
             }
         }
         return -1;
+    }
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+
+        List<List<Integer>> adjacencyList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adjacencyList.add(new ArrayList<>());
+        }
+
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            adjacencyList.get(u).add(v);
+            adjacencyList.get(v).add(u);
+        }
+
+        boolean[] visited = new boolean[n];
+
+        return dfs(adjacencyList , visited , source , destination);
+
+    }
+    private boolean dfs(List<List<Integer>> adjacencyList, boolean[] visited, int source, int destination) {
+        if (source == destination) {
+            return true;
+        }
+
+        visited[source] = true;
+
+        for (int neighbour : adjacencyList.get(source)) {
+            if (!visited[neighbour]) {
+                if (dfs(adjacencyList, visited, neighbour, destination)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
