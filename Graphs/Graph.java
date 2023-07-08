@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Graph{
     private int numVertices;
@@ -53,6 +54,26 @@ public class Graph{
             }
         }
         System.out.println();
+    }
+    public void dfs(int startVertex){
+        boolean[] visited = new boolean[numVertices];
+        Stack<Integer> stack = new Stack<>();
+        visited[startVertex] = true;
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            int currVertex = stack.pop();
+            System.out.print(currVertex + " ");
+
+            List<Integer> neighbour = adjacencyList.get(currVertex);
+            for (int adj : neighbour) {
+                if (!visited[adj]) {
+                    visited[adj] = true;
+                    stack.push(adj);
+                }
+            }
+
+        }
     }
 
     public void display() {
