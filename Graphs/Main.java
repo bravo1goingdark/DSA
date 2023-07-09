@@ -28,5 +28,18 @@ public class Main {
         System.out.println();
         List<Integer> list = graph.getadjacentVertices(1);
         System.out.println(list);
+        System.out.println();
+
+
+        PrimsAlgorithm graph2 = new PrimsAlgorithm(5);
+        graph2.addEdges(0, 1, 5);
+        graph2.addEdges(0, 2, 1);
+        graph2.addEdges(1, 2, 2);
+        graph2.addEdges(1, 3, 3);
+        graph2.addEdges(2, 3, 4);
+        graph2.addEdges(2, 4, 6);
+        graph2.addEdges(3, 4, 7);
+
+        graph2.primsMST(0);
     }
 }

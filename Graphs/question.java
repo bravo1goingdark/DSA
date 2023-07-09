@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,4 +90,34 @@ public class question {
         }
         return false;
     }
+    public int minCostConnectPoints(int[][] points) {
+        int n = points.length;
+        int[] minDist = new int[n];
+        Arrays.fill(minDist , Integer.MAX_VALUE);
+        boolean[] visited = new boolean[n];
+
+        int minCost = 0 ;
+        for (int i = 0; i < n; i++) {
+            int curr = -1;
+            // Find the closest unvisited point
+            for (int j = 0; j < n; j++) {
+                if (!visited[j] && (curr == -1 || minDist[j] < minDist[curr])) {
+                    curr = j;
+                }
+            }
+            minCost += minDist[curr];
+            visited[curr] = true;
+
+            for (int j = 0; j < n; j++) {
+                if (!visited[j]) {
+                    int dist = Math.abs(points[curr][0] - points[j][0]) + Math.abs(points[curr][1] - points[j][1]);
+                    minDist[j] = Math.min(minDist[j], dist);
+                }
+            }
+        }
+        
+        return minCost;
+
+    }
 }
+
