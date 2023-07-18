@@ -9,12 +9,13 @@ The sliding window technique is a commonly used algorithmic approach that involv
 
 <B>2. Process Initial Window:</B> Perform the required calculations, checks, or operations on the initial window to establish a baseline or initialize any necessary data structures.
 
-Slide the Window: Move the window by incrementing or decrementing its boundaries to the next position. This step usually involves removing the leftmost element from the window and adding the rightmost element.
+<B>3. Slide the Window:</B> Move the window by incrementing or decrementing its boundaries to the next position. This step usually involves removing the leftmost element from the window and adding the rightmost element.
 
-Update State: Update any relevant information, data structures, or counters after sliding the window. This step is important to reflect the changes resulting from moving the window.
+<B>4. Update State:</B> Update any relevant information, data structures, or counters after sliding the window. This step is important to reflect the changes resulting from moving the window.
 
-Check Conditions or Perform Calculations: Examine the current window's contents and evaluate any conditions or perform calculations necessary to solve the problem. This could involve checking for a specific pattern, finding a maximum or minimum value, calculating a sum or average, or any other relevant computation.
+<B>5. Check Conditions or Perform Calculations:</B> Examine the current window's contents and evaluate any conditions or perform calculations necessary to solve the problem. This could involve checking for a specific pattern, finding a maximum or minimum value, calculating a sum or average, or any other relevant computation.
 
-Repeat Steps 3 to 5: Continue sliding the window and updating the state until the window reaches the end of the array or satisfies the desired termination condition.
+<B>Repeat Steps 3 to 5:</B> Continue sliding the window and updating the state until the window reaches the end of the array or satisfies the desired termination condition.
+
 </P>
 
