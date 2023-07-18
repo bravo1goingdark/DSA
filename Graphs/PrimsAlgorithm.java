@@ -60,7 +60,7 @@ public class PrimsAlgorithm {
         Arrays.fill(key , Integer.MAX_VALUE);
 
         PriorityQueue<Edge> minheap = new PriorityQueue<>();
-        int startvertex = 0;
+        int startvertex = source;
         key[startvertex] = 0;
         minheap.add(new Edge(startvertex, startvertex, 0));
 
@@ -68,9 +68,9 @@ public class PrimsAlgorithm {
             Edge currEdge = minheap.poll();
             int currvertex = currEdge.getDest();
 
-            if (visited[currvertex]) {
-                continue;
-            }
+            // if (visited[currvertex]) {
+            //     continue;
+            // }
 
             visited[currvertex] = true;
 
