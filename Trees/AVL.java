@@ -38,8 +38,9 @@ class AVLTree {
     }
     
     int balanceFactor(Node node) {
-        if (node == null)
-        return 0;
+        if (node == null) {
+            return 0;
+        }
         return height(node.left) - height(node.right);
     }
     

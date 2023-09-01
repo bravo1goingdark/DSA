@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -353,6 +354,115 @@ public class Question {
         }
     }
 
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        
+        while (!que.isEmpty()) {
+            double avglevel = 0;
+            int levelsize = que.size();
+            for (int i = 0; i < levelsize; i++) {
+                TreeNode currNode = que.poll();
+                avglevel += currNode.val;
+
+                if (currNode.left != null) {
+                    que.offer(currNode.left);
+                }
+
+                if (currNode.right != null) {
+                    que.offer(currNode.right);
+                }
+                
+            }
+            avglevel /= levelsize;
+            result.add(avglevel);
+
+        }
+        return result;
+    }
+
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Deque<TreeNode> que = new LinkedList<>();
+        que.offerFirst(root);
+
+        boolean rev = false;
+
+        while (!que.isEmpty()) {
+            int lvlsize = que.size();
+            List<Integer> currlevel = new ArrayList<>();
+
+            for (int i = 0; i < lvlsize; i++) {
+                
+                if (!rev) {
+                    TreeNode currNode = que.pollFirst();
+                    currlevel.add(currNode.val);
+
+                    if (currNode.left != null) {
+                        que.addLast(currNode.left);
+                    }
+                    if (currNode.right != null) {
+                        que.addLast(currNode.right);
+                    }
+                } else {
+                    TreeNode currNode = que.pollLast();
+                    currlevel.add(currNode.val);
+
+                    if (currNode.right != null) {
+                        que.addFirst(currNode.right);
+                    }
+                    if (currNode.left != null) {
+                        que.addFirst(currNode.left);
+                    }
+                }
+
+                rev = !rev;
+                
+            }
+            result.add(currlevel);
+
+        }
+
+        return result;
+    }
+
+    public Node connect(Node root) {
+        if(root == null) {
+            return null;
+        }
+
+        Node leftMost = root;
+
+        while (leftMost.left != null) {
+            Node current = leftMost;
+
+            while (current != null) {
+                current.left.next = current.right;
+
+                if (current.next != null) {
+                    current.right.next = current.next.left;
+                }
+                current = current.next;
+            }
+
+            leftMost = leftMost.left;
+        }
+
+        return root;
+    }
+
 class TreeNode {
     int val;
     TreeNode left;
@@ -365,5 +475,26 @@ class TreeNode {
         this.right = right;
     }
 }}
+
+
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+    
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+}
 
 
