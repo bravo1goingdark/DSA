@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import javax.swing.tree.TreeNode;
+
 public class Question {
     public static void main(String[] args) {
         String s = reversePrefix("rzwuktxcjfpamlonbgyieqdvhs", 's');
@@ -461,6 +463,38 @@ public class Question {
         }
 
         return root;
+    }
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        
+        while (!que.isEmpty()) {
+            int levelsize = que.size();
+            for (int i = 0; i < levelsize; i++) {
+                TreeNode currNode = que.poll();
+                
+                if (i == levelsize - 1) {
+                    result.add(currNode.val);
+                }
+
+                if (currNode.left != null) {
+                    que.offer(currNode.left);
+                }
+
+                if (currNode.right != null) {
+                    que.offer(currNode.right);
+                }
+                
+            }
+        }
+        return result;
     }
 
 class TreeNode {
