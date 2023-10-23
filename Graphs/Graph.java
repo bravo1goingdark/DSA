@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 public class Graph {
     private int numVertices;
     private List<List<Integer>> adjacencyList;
@@ -35,6 +36,33 @@ public class Graph {
                 System.out.print(neighbors.get(j) + " ");
             }
             System.out.println();
+        }
+    }
+
+    public void DFS(int startVertex){
+        boolean[] visited = new boolean[numVertices];
+        DFSutil(startVertex , visited);
+    }
+
+    private void DFSutil(int startVertex, boolean[] visited) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            int currVertex = stack.pop();
+
+            if (!visited[currVertex]) {
+                visited[currVertex] = true;
+                System.out.print(currVertex + " ");
+
+                List<Integer> neighbours = adjacencyList.get(currVertex);
+                for (Integer neighbour : neighbours) {
+                    if (!visited[neighbour]) {
+                        stack.push(neighbour);
+                    }  
+                }
+
+            }
         }
     }
 
