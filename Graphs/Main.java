@@ -10,5 +10,7 @@ public class Main {
         graph.printGraph();
         System.out.println();
         graph.DFS(0);
+        System.out.println();
+        graph.recur_DFS(0);
     }
 }

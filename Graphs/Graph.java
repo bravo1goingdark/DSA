@@ -39,6 +39,7 @@ public class Graph {
         }
     }
 
+    // Depth first search using stack
     public void DFS(int startVertex){
         boolean[] visited = new boolean[numVertices];
         DFSutil(startVertex , visited);
@@ -61,9 +62,26 @@ public class Graph {
                         stack.push(neighbour);
                     }  
                 }
-
             }
         }
     }
 
+    // DFS using recursion
+
+    public void recur_DFS(int startVertex){
+        boolean[] visited = new boolean[numVertices];
+        recur_DFS_util(startVertex , visited); 
+    }
+
+    private void recur_DFS_util(int startVertex, boolean[] visited) {
+        visited[startVertex] = true;
+        System.out.print(startVertex + " ");
+
+        List<Integer> neighbourVertex = adjacencyList.get(startVertex);
+        for (Integer neighbour : neighbourVertex) {
+            if (!visited[neighbour]) {
+                recur_DFS_util(neighbour, visited);
+            }
+        }
+    }
 }
