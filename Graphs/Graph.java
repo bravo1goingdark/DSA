@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 public class Graph {
     private int numVertices;
@@ -81,6 +84,31 @@ public class Graph {
         for (Integer neighbour : neighbourVertex) {
             if (!visited[neighbour]) {
                 recur_DFS_util(neighbour, visited);
+            }
+        }
+    }
+
+    // BFS 
+    public void BFS(int startVertex) {
+        boolean[] visited = new boolean[numVertices];
+        Arrays.fill(visited, false);
+        BFSutil(startVertex , visited);
+
+    }
+
+    private void BFSutil(int startVertex, boolean[] visited) {
+        Queue<Integer> que = new LinkedList<>();
+        visited[startVertex] = true;
+        que.offer(startVertex);
+
+        while (!que.isEmpty()) {
+            int currVertex = que.poll();
+            System.out.print(currVertex + " ");
+            for (Integer neighbour : adjacencyList.get(currVertex)) {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    que.offer(neighbour);
+                }
             }
         }
     }
