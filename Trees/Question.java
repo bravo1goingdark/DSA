@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -514,6 +515,41 @@ public class Question {
             }
         }
         return str.toString();
+    }
+    public boolean findTarget(TreeNode root, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        return helper(root , k , set);
+    }
+
+    private boolean helper(TreeNode root, int k, HashSet<Integer> set) {
+        if (root == null) {
+            return false;
+        }
+        if (set.contains(k - root.val)) {
+            return true;
+        }
+        set.add(root.val);
+        return helper(root.left, k, set) || helper(root.right, k, set);
+    }
+    private int k;
+    private int ans;
+    public int kthSmallest(TreeNode root, int k) {
+        this.k = k;
+        helper(root);
+        return ans;
+    }
+
+    private void helper(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        helper(root.left);
+        k--;
+        if (k == 0) {
+            ans = root.val;
+            return;
+        }
+        helper(root.right);
     }
 
 class TreeNode {
