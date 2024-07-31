@@ -44,7 +44,7 @@ Smallest Subarray with a Given Sum
 
 <B>3. Multiple Data Structures: </B>
 
--[X]Longest Subarray with Equal 0s and 1s
+Longest Subarray with Equal 0s and 1s
 Maximum Number of Fruits in Two Baskets
 Longest Substring with K Distinct Characters
 Find All Anagrams in a String
