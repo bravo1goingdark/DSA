@@ -2,16 +2,19 @@ import java.util.Arrays;
 
 public class basic {
     public static void main(String[] args) {
-        long[] dp = new long[46];
-        Arrays.fill(dp, -1);
         // System.out.println(FiboSpaceOpt(40));
-
+        
         // System.out.println(climbStairMemo(45 , dp));
         // System.out.println(FiboMemo(45, dp));
         // System.out.println(FiboTabulation(40));
         // System.out.println(climbStairSpaceOpt(45));
         // System.out.println(minCostClimbingStairs(new int[]{10,15,20}));
-        System.out.println(minCostClimbingStairsTabulation(new int[]{10,15,20}));
+        // System.out.println(minCostClimbingStairsTabulation(new int[]{10,15,20}));
+        // System.out.println(tribonacci(35));
+        int[] arr = new int[]{0,1,3,5,6,8,12,17};
+        int[] dp = new int[arr.length + 1];
+        Arrays.fill(dp, -1);
+        System.out.println(frogJumpSpaceOpt(arr));
     }
 
     public static long FiboMemo(int num, long[] dp) {
@@ -148,5 +151,87 @@ public class basic {
 
         return Math.min(dp[cost.length - 1], dp[cost.length - 2]);
     }
+
+    public static int tribonacci(int n) {
+        int[] tribo = new int[40];
+        tribo[0] = 0;
+        tribo[1] = 1;
+        tribo[2] = 1;
+
+        for (int index = 0; index <= n; index++) {
+            tribo[index + 3] = tribo[index] + tribo[index + 1] + tribo[index + 2]; 
+        }
+
+        return tribo[n];
+    }
+
+
+    private static int frogJumpMemo(int index , int[] arr , int[] dp){
+        if (index == 0) {
+            return 0;
+        }
+        if (dp[index] != -1) {
+            return dp[index];
+        }
+
+        int left = Math.abs(arr[index] - arr[index - 1]) + frogJumpMemo(index - 1, arr,dp);
+        int right = Integer.MAX_VALUE;
+        if (index > 1) {
+            right = Math.abs(arr[index] - arr[index - 2]) + frogJumpMemo(index - 2, arr , dp);
+        }
+
+        return dp[index] = Math.min(left, right);
+    }
+
+
+    private static int frogJumpTabulation(int[] arr){
+
+        int[] dp = new int [arr.length];
+        dp[0] = 0;
+
+        for (int ind = 1; ind < arr.length; ind++) {
+            int fs = dp[ind - 1] + Math.abs(arr[ind] - arr[ind - 1]);
+            int ss = Integer.MAX_VALUE;
+            if (ind > 1) {
+                ss = dp[ind - 2] + Math.abs(arr[ind] - arr[ind - 2]);
+            }
+
+            dp[ind] = Math.min(fs, ss);
+        }
+
+        return dp[dp.length - 1];
+    }
+
+    private static int frogJumpSpaceOpt(int[] arr){
+
+        int prev = 0;
+        int prevprev = 0;
+
+        for (int ind = 1; ind < arr.length; ind++) {
+            int fs = prev + Math.abs(arr[ind] - arr[ind - 1]);
+            int ss = Integer.MAX_VALUE;
+            if (ind > 1) {
+                ss = prevprev + Math.abs(arr[ind] - arr[ind - 2]);
+            }
+
+            int curr = Math.min(fs, ss);
+            prevprev = prev;
+            prev = curr;
+        }
+
+        return prev;
+    }
+
+
+  
+
+
+
+    // https://leetcode.com/problems/frog-jump/description/
+
+    public static boolean canCross(int[] stones) {
+        
+    }
+
 
 }
