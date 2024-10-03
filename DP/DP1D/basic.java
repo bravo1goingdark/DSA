@@ -1,3 +1,5 @@
+package DP1D;
+
 import java.util.Arrays;
 
 public class basic {
