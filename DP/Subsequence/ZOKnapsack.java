@@ -19,7 +19,8 @@ public class ZOKnapsack {
         // return knapsack(n - 1, weight, value, maxWeight);
         // return knapsackMemo(n - 1, weight, value, maxWeight, dp);
         // return knapsacTabu(weight, value, maxWeight);
-        return knapsacSpaceOpt(weight, value, maxWeight);
+        // return knapsacSpaceOpt(weight, value, maxWeight);
+        return knapsacSpaceOptSingleRow(weight, value, maxWeight);
 
     }
 
@@ -101,6 +102,28 @@ public class ZOKnapsack {
                 curr[wt] = Math.max(notPick, pick);
             }
             prev = curr;
+        }
+
+        return prev[maxWeight];
+    }
+
+    private static int knapsacSpaceOptSingleRow(int[] weight, int[] value, int maxWeight) {
+        int[] prev = new int[maxWeight + 1];
+
+        for (int wt = weight[0]; wt <= maxWeight; wt++) {
+            prev[wt] = value[0];
+        }
+
+        for (int index = 1; index < weight.length; index++) {
+            for (int wt = maxWeight; wt >= 0; wt--) {
+                int notPick = prev[wt];
+                int pick = Integer.MIN_VALUE;
+                if (weight[index] <= wt) {
+                    pick = value[index] + prev[wt - weight[index]];
+                }
+
+                prev[wt] = Math.max(notPick, pick);
+            }
         }
 
         return prev[maxWeight];
