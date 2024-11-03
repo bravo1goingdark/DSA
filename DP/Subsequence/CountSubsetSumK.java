@@ -2,11 +2,9 @@ package Subsequence;
 
 import java.util.Arrays;
 
-// this solution does not work for testcase containing 0 at 0,1,2... and so on index before any number > 0 
-// like {0,1,3} , {0,0,1}
 public class CountSubsetSumK {
     public static void main(String[] args) {
-        System.out.println(findWays(new int[] { 0, 1, 3 }, 4));
+        System.out.println(findWays(new int[] { 0, 0, 1 }, 1));
     }
 
     public static int findWays(int num[], int tar) {
@@ -16,35 +14,42 @@ public class CountSubsetSumK {
         }
         // return countSubsetWithSumK(num.length - 1, tar, num);
         // return countSubsetWithSumKMemo(num.length - 1, tar, num, dp);
-        // return countSubsetWithSumKTabu(tar, num);
-        return countSubsetWithSumKSpaceOpt(tar, num);
+        return countSubsetWithSumKTabu(tar, num);
+        // return countSubsetWithSumKSpaceOpt(tar, num);
 
     }
 
     private static int countSubsetWithSumK(int index, int target, int[] arr) {
         if (index == 0) {
-            return arr[index] == target ? 1 : 0;
-        }
-        if (target == 0) {
-            return 1;
+            if (target == 0 && arr[0] == 0) {
+                return 2;
+            }
+            if (target == 0 || target == arr[0]) {
+                return 1;
+            }
+            return 0;
         }
 
         int notPick = countSubsetWithSumK(index - 1, target, arr);
         int pick = 0;
         if (arr[index] <= target) {
-            countSubsetWithSumK(index - 1, target - arr[index], arr);
+            pick = countSubsetWithSumK(index - 1, target - arr[index], arr);
         }
 
         return pick + notPick;
     }
 
     private static int countSubsetWithSumKMemo(int index, int target, int[] arr, int[][] dp) {
-        if (target == 0) {
-            return 1;
-        }
         if (index == 0) {
-            return arr[0] == target ? 1 : 0;
+            if (target == 0 && arr[0] == 0) {
+                return 2;
+            }
+            if (target == 0 || target == arr[0]) {
+                return 1;
+            }
+            return 0;
         }
+
         if (dp[index][target] != -1) {
             return dp[index][target];
         }
@@ -62,10 +67,9 @@ public class CountSubsetSumK {
 
         int[][] dp = new int[arr.length][target + 1];
 
-        for (int i = 0; i < arr.length; i++) {
-            dp[i][0] = 1;
-        }
-        if (arr[0] <= target) {
+        dp[0][0] = arr[0] == 0 ? 2 : 1;
+        
+        if (arr[0] != 0 && arr[0] <= target) {
             dp[0][arr[0]] = 1;
         }
 
@@ -84,29 +88,27 @@ public class CountSubsetSumK {
     }
 
     private static int countSubsetWithSumKSpaceOpt(int target, int[] arr) {
-        
         int[] prev = new int[target + 1];
-        int[] curr = new int[target + 1];
-
-        prev[0] = 1;
-        curr[0] = 1;
-
-        if (arr[0] <= target) {
-            prev[arr[0]] = 1;
+        
+        prev[0] = 1; 
+        
+        if (arr[0] == 0) {
+            prev[0] = 2; // two choices when arr[0] == 0 either to pick it or not pick it
+        } else if (arr[0] <= target) {
+            prev[arr[0]] = 1; 
         }
 
         for (int index = 1; index < arr.length; index++) {
+            int[] curr = new int[target + 1];
             for (int sum = 0; sum <= target; sum++) {
                 int notPick = prev[sum];
                 int pick = 0;
                 if (arr[index] <= sum) {
                     pick = prev[sum - arr[index]];
                 }
-                curr[sum] = pick + notPick;
+                curr[sum] = (pick + notPick) % MOD;
             }
-            int[] temp = prev;
-            prev = curr;
-            curr = temp;
+            prev = curr; 
         }
 
         return prev[target];
