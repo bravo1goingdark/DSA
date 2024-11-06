@@ -1,9 +1,9 @@
-import java.util.*;
+package Subsequence;
 
 public class PartitonWithGivenDiff {
     public static int MOD = (int) (1e9 + 7);
 
-    public static int countPartitions(int n, int d, int[] arr) {
+    public static int countPartitions(int d, int[] arr) {
         int totalSum = getTotalSum(arr);
         int target = totalSum - d;
         
