@@ -16,8 +16,8 @@ public class LCS {
         // return longestCommonSubsequence(text1.length() - 1, text2.length() - 1,
         // text1, text2);
         // return longestCommonSubsequenceMemo(text1.length() - 1, text2.length() - 1, text1, text2, dp);
-        // return longestCommonSubsequenceTabu(text1, text2);
-        return longestCommonSubsequenceSpaceOpt(text1, text2);
+        return longestCommonSubsequenceTabu(text1, text2);
+        // return longestCommonSubsequenceSpaceOpt(text1, text2);
     }
 
     private static int longestCommonSubsequence(int firstStr, int secondStr, String text1, String text2) {
@@ -74,6 +74,10 @@ public class LCS {
                 }
 
             }
+        }
+        
+        for (int[] is : dp) {
+            System.out.println(Arrays.toString(is));
         }
 
         return dp[text1.length()][text2.length()];

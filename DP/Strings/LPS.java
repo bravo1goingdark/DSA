@@ -11,7 +11,6 @@ public class LPS {
             prev[i] = 0;
         }
 
-
         for (int i = 1; i <= text1.length(); i++) {
             int[] curr = new int[text2.length() + 1];
             for (int j = 1; j <= text2.length(); j++) {
@@ -20,11 +19,9 @@ public class LPS {
                 } else {
                     curr[j] = Math.max(prev[j], curr[j - 1]);
                 }
-
             }
             prev = curr;
         }
-
         return prev[text2.length()];
     }
 }
