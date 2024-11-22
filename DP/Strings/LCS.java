@@ -15,7 +15,8 @@ public class LCS {
 
         // return longestCommonSubsequence(text1.length() - 1, text2.length() - 1,
         // text1, text2);
-        // return longestCommonSubsequenceMemo(text1.length() - 1, text2.length() - 1, text1, text2, dp);
+        // return longestCommonSubsequenceMemo(text1.length() - 1, text2.length() - 1,
+        // text1, text2, dp);
         return longestCommonSubsequenceTabu(text1, text2);
         // return longestCommonSubsequenceSpaceOpt(text1, text2);
     }
@@ -64,7 +65,6 @@ public class LCS {
             dp[0][i] = 0;
         }
 
-
         for (int i = 1; i <= text1.length(); i++) {
             for (int j = 1; j <= text2.length(); j++) {
                 if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
@@ -75,7 +75,7 @@ public class LCS {
 
             }
         }
-        
+
         for (int[] is : dp) {
             System.out.println(Arrays.toString(is));
         }
@@ -89,7 +89,6 @@ public class LCS {
         for (int i = 0; i <= text2.length(); i++) {
             prev[i] = 0;
         }
-
 
         for (int i = 1; i <= text1.length(); i++) {
             int[] curr = new int[text2.length() + 1];

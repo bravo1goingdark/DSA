@@ -24,7 +24,18 @@ public class basic {
         // System.out.println(maximumNonAdjacentSumMemo(arr.length - 1, arr, dp));
         // System.out.println(maximumNonAdjacentSumTabulation(arr));
 
-        System.out.println(maximumNonAdjacentSumSpaceOpt(arr));
+        // System.out.println(maximumNonAdjacentSumSpaceOpt(arr));
+        // System.out.println(fibo(8));
+
+    
+    }
+
+    public static long fibo(int num){
+        if (num <= 1) {
+            return num;
+        }
+
+        return fibo(num - 1) + fibo(num - 2);
     }
 
     public static long FiboMemo(int num, long[] dp) {
