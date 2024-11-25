@@ -1,6 +1,12 @@
 package Strings;
 
 public class PrintLCS {
+    public static void main(String[] args) {
+        System.out.println(lcs("abac", "cab"));
+    }
+    public static String lcs(String s1,String s2){
+        return printlongestCommonSubsequenceTabu(s1.length(), s2.length(), s1, s2);
+    }
 
     private static String printlongestCommonSubsequenceTabu(int n, int m, String text1, String text2) {
         int[][] dp = new int[n + 1][m + 1];
@@ -40,13 +46,4 @@ public class PrintLCS {
         return lcs.reverse().toString();
     }
 
-    public static void main(String[] args) {
-        String text1 = "ABCBDAB";
-        String text2 = "BDCAB";
-        int n = text1.length();
-        int m = text2.length();
-
-        String lcs = printlongestCommonSubsequenceTabu(n, m, text1, text2);
-        System.out.println("LCS: " + lcs);  
-    }
 }
