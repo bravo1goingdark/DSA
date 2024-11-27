@@ -15,7 +15,8 @@ public class DistinctSubsequence {
 
         // return numDistinct(s.length() - 1, t.length() - 1, s, t);
         // return numDistinctMemo(s.length() - 1, t.length() - 1, s, t, dp);
-        return numDistinctTabu(s, t);
+        // return numDistinctTabu(s, t);
+        return numDistinctSpaceOpt(s, t);
 
     }
 
@@ -78,5 +79,45 @@ public class DistinctSubsequence {
         }
 
         return dp[s.length()][t.length()];
+    }
+
+    private static int numDistinctSpaceOpt(String s, String t) {
+
+        int[] prev = new int[t.length() + 1];
+        int[] curr = new int[t.length() + 1];
+        prev[0] = 1;
+        curr[0] = 1;
+    
+        for (int i = 1; i <= s.length(); i++) {
+            
+            for (int j = 1; j <= t.length(); j++) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    curr[j] = prev[j - 1] + prev[j];
+                } else {
+                    curr[j] = prev[j];
+                }
+            }
+            int[] temp = prev;
+            prev = curr;
+            curr = temp;
+        }
+
+        return prev[t.length()];
+    }
+
+    private static int numDistinct1DSpaceOpt(String s, String t) {
+        int[] prev = new int[t.length() + 1];
+        prev[0] = 1;   
+
+        for (int i = 1; i <= s.length(); i++) {
+            
+            for (int j = t.length(); j >= 1; j--) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    prev[j] = prev[j - 1] + prev[j];
+                } 
+            }    
+        }
+        
+        return prev[t.length()];
     }
 }
