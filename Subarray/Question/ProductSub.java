@@ -1,3 +1,7 @@
+package Question;
+
+import java.util.List;
+
 public class ProductSub {
     public int numSubarrayProductLessThanK(int[] nums, int k) {
         if (k <= 1) return 0;

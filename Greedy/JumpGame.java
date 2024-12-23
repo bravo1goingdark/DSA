@@ -6,7 +6,7 @@ public class JumpGame {
             if (index > maxIndex) {
                 return false;
             }
-
+            
             maxIndex = Math.max(maxIndex, index + nums[index]);
         }
 

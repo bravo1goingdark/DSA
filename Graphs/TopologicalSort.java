@@ -6,7 +6,7 @@ public class TopologicalSort {
     private int numVertices;
     private List<List<Integer>> adjacencyList;
 
-    TopologicalSort(int numVertices){
+    public TopologicalSort(int numVertices){
         this.numVertices = numVertices;
         this.adjacencyList = new ArrayList<>(numVertices);
         

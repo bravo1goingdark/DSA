@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "tryjava",
+            "request": "launch",
+            "mainClass": "tryjava",
+            "projectName": "Recursion_2ee6e819"
+        },
+        {
+            "type": "java",
             "name": "NQueenProblem",
             "request": "launch",
             "mainClass": "NQueenProblem",

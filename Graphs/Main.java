@@ -24,7 +24,6 @@ public class Main {
         graphnew.addEdges(2, 3);
         graphnew.addEdges(3, 1);
 
-        List<Integer> res = graphnew.topSort();
-        System.out.println(res);
+        System.out.println(graphnew.topSort());
     }
 }

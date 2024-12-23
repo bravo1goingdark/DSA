@@ -22,9 +22,7 @@ class quicksorT {
                 end--;
             }
             if (start <= end) {
-                int temp = arr[start];
-                arr[start] = arr[end];
-                arr[end] = temp;
+                swap(arr, start , end);
                 start++;
                 end--;
             }
@@ -32,4 +30,9 @@ class quicksorT {
         quickSort(arr, low, end);
         quickSort(arr, start, high);
     }  
+    static void swap(int[] arr , int index1 , int index2){
+        int temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
 }    

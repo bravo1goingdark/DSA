@@ -7,6 +7,7 @@ public class MyHashMap <K , V> {
         this(16);
 
     }
+    
     @SuppressWarnings("unchecked")
     public MyHashMap (int capacity) {
         this.bucket = new HashEntry[capacity];

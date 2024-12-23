@@ -4,7 +4,7 @@ public class mazeproblem{
     public static void main(String[] args) {
     //    mazedestpath("",3, 3);
         ArrayList<String> ans = mazedestpathDiagonalList("", 3, 3);
-        System.out.println(ans);
+        System.out.println(mazedestcount(3, 2));
 
     }   
     static int mazedestcount(int row , int col){ 

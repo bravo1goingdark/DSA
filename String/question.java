@@ -27,4 +27,16 @@ public class question {
         return true;
     }
 
+    public int countDigitOne(int n) {
+        int count = 0;
+        countDigitOne(count , n);
+        return count;
+    }
+
+    private void countDigitOne(int count, int n) {
+        for (int i = 1; i <=n ; i++) {
+            
+        }
+    }
+
 }

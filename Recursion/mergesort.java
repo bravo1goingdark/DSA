@@ -2,8 +2,9 @@ import java.util.Arrays;
 
 public class mergesort {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(mergeSort(new int[]{9,8,7,6,5})));
+        System.out.println(Arrays.toString(mergeSort(new int[] { 9, 8, 7, 6, 5 })));
     }
+
 
     public static int[] mergeSort(int[] arr) {
         if (arr.length == 1) {
@@ -14,7 +15,7 @@ public class mergesort {
         int[] first = mergeSort(Arrays.copyOfRange(arr, 0, mid));
         int[] second = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));
 
-        return merge(first , second);
+        return merge(first, second);
     }
 
     private static int[] merge(int[] first, int[] second) {
@@ -24,7 +25,7 @@ public class mergesort {
         int j = 0;
         int k = 0;
 
-        while(i < first.length && j < second.length) {
+        while (i < first.length && j < second.length) {
             if (first[i] < second[j]) {
                 newarr[k] = first[i];
                 i++;
@@ -41,7 +42,7 @@ public class mergesort {
             k++;
         }
 
-         while (j < second.length) {
+        while (j < second.length) {
             newarr[k] = second[j];
             j++;
             k++;
