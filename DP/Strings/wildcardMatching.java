@@ -1,11 +1,9 @@
 package Strings;
 
-import java.util.Arrays;
-
 public class wildcardMatching {
     public static void main(String[] args) {
-        System.out.println(isMatch("cb", "?a"));
-        System.out.println(isMatch("adceb", "*a*b"));
+        // System.out.println(isMatch("cb", "?a"));
+        System.out.println(isMatch("aa", "*"));
     }
 
     public static boolean isMatch(String s, String p) {
@@ -25,7 +23,7 @@ public class wildcardMatching {
             return false;
         }
 
-        if (first < 0) {
+        if (first < 0 && second >= 0) {
             for (int i = 0; i <= second; i++) {
                 if (p.charAt(i) != '*') {
                     return false;
@@ -39,8 +37,7 @@ public class wildcardMatching {
         }
 
         if (p.charAt(second) == '*') {
-            return isMatchHelper(first - 1, second, s, p) ||
-                    isMatchHelper(first, second - 1, s, p);
+            return isMatchHelper(first - 1, second, s, p) || isMatchHelper(first, second - 1, s, p);
         }
 
         return false;
@@ -55,7 +52,7 @@ public class wildcardMatching {
             return false;
         }
 
-        if (first < 0) {
+        if (first < 0 && second >= 0) {
             for (int i = 0; i <= second; i++) {
                 if (p.charAt(i) != '*') {
                     return false;

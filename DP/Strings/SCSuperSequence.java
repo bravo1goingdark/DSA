@@ -1,6 +1,9 @@
 package Strings;
 
 public class SCSuperSequence {
+    public static void main(String[] args) {
+        System.out.println(shortestCommonSupersequence("abac", "cab"));
+    }
     public static String shortestCommonSupersequence(String str1, String str2) {
         return printlongestCommonSubsequenceTabu(str1.length(), str2.length(), str1, str2);
     }

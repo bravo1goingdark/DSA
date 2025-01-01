@@ -13,10 +13,10 @@ public class DistinctSubsequence {
             Arrays.fill(is, -1);
         }
 
-        // return numDistinct(s.length() - 1, t.length() - 1, s, t);
+        return numDistinct(s.length() - 1, t.length() - 1, s, t);
         // return numDistinctMemo(s.length() - 1, t.length() - 1, s, t, dp);
         // return numDistinctTabu(s, t);
-        return numDistinctSpaceOpt(s, t);
+        // return numDistinctSpaceOpt(s, t);
 
     }
 
@@ -110,7 +110,6 @@ public class DistinctSubsequence {
         prev[0] = 1;   
 
         for (int i = 1; i <= s.length(); i++) {
-            
             for (int j = t.length(); j >= 1; j--) {
                 if (s.charAt(i - 1) == t.charAt(j - 1)) {
                     prev[j] = prev[j - 1] + prev[j];

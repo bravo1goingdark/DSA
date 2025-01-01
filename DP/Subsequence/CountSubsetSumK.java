@@ -3,6 +3,7 @@ package Subsequence;
 import java.util.Arrays;
 
 public class CountSubsetSumK {
+    private static final int MOD = 1000000007;
     public static void main(String[] args) {
         System.out.println(findWays(new int[] { 0, 0, 1 }, 1));
     }
