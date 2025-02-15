@@ -7,6 +7,9 @@ public class Conversion {
         System.out.println(inFixToPostFix("a+b*(c^d-e)"));
         System.out.println(inFixToPrefix("a+b*(c^d-e)"));
         System.out.println(PostFixToInfix(inFixToPostFix("a+b*(c^d-e)")));
+        System.out.println(PrefixToInfix("*+PQ-MN"));
+        System.out.println(PostfixToPrefix("AB-DE+F*/"));
+        System.out.println(PreFixToPostFix("/-AB*+DEF"));
     }
 
     public static String inFixToPostFix(String str) {
@@ -48,14 +51,14 @@ public class Conversion {
         return new StringBuilder(inFixToPostFix(reverse(str))).reverse().toString();
 
     }
-    
-    public static String PostFixToInfix(String str){
+
+    public static String PostFixToInfix(String str) {
         Stack<String> stack = new Stack<>();
 
         for (Character ch : str.toCharArray()) {
             if (Character.isLetterOrDigit(ch)) {
                 stack.push(ch.toString());
-            }else {
+            } else {
                 String first = stack.pop();
                 String second = stack.pop();
 
@@ -67,10 +70,61 @@ public class Conversion {
         return stack.peek();
     }
 
+    public static String PrefixToInfix(String str) {
+        Stack<String> stack = new Stack<>();
 
+        for (int index = str.length() - 1; index >= 0; index--) {
+            Character ch = str.charAt(index);
 
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(ch.toString());
+            } else {
 
-    
+                String first = stack.pop();
+                String second = stack.pop();
+                String res = "(" + first + ch + second + ")";
+
+                stack.push(res);
+            }
+        }
+        return stack.peek();
+    }
+
+    public static String PostfixToPrefix(String str) {
+        Stack<String> stack = new Stack<>();
+
+        for (Character ch : str.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(ch.toString());
+            } else {
+                String first = stack.pop();
+                String second = stack.pop();
+                String res = ch + second + first;
+
+                stack.push(res);
+            }
+        }
+        return stack.peek();
+    }
+
+    public static String PreFixToPostFix(String str) {
+        Stack<String> stack = new Stack<>();
+        for (int index = str.length() - 1; index >= 0; index--) {
+            Character ch = str.charAt(index);
+            if (Character.isLetterOrDigit(ch)) {
+                stack.push(ch.toString());
+            } else {
+                String first = stack.pop();
+                String second = stack.pop();
+                String res = first + second + ch;
+
+                stack.push(res);
+
+            }
+        }
+        return stack.peek();
+    }
+
     private static String reverse(String str) {
         StringBuilder rev = new StringBuilder();
 
